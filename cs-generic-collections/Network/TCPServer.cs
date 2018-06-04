@@ -1,6 +1,4 @@
-﻿using System;
-using System.Net;
-using System.Collections.Generic;
+﻿using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
@@ -14,7 +12,7 @@ namespace Generic.Network
         private int intMaxClients = 1;
         private TcpListener tcp;
         private IPEndPoint localIPEndPoint;
-        private Generic.Collections.Queue<KeyValuePair<IPEndPoint, byte[]>> queueOutgoing = new Generic.Collections.Queue<KeyValuePair<IPEndPoint, byte[]>>();
+        private Generic.Collections.Queue<System.Collections.Generic.KeyValuePair<IPEndPoint, byte[]>> queueOutgoing = new Generic.Collections.Queue<System.Collections.Generic.KeyValuePair<IPEndPoint, byte[]>>();
         private Generic.Collections.Buffer oBuffer = new Generic.Collections.Buffer();
         private Thread threadWrite;
         private Thread threadListen;
@@ -176,32 +174,32 @@ namespace Generic.Network
         }
         protected void Write(byte[] message)
         {
-            queueOutgoing.Enqueue(new KeyValuePair<IPEndPoint, byte[]>(null, message));
+            queueOutgoing.Enqueue(new System.Collections.Generic.KeyValuePair<IPEndPoint, byte[]>(null, message));
         }
         protected void Write(byte[] message, IPEndPoint target)
         {
-            queueOutgoing.Enqueue(new KeyValuePair<IPEndPoint, byte[]>(target, message));
+            queueOutgoing.Enqueue(new System.Collections.Generic.KeyValuePair<IPEndPoint, byte[]>(target, message));
         }
         protected void Write(byte[] message, IPAddress ipAddress, int port)
         {
             IPEndPoint endpoint = new IPEndPoint(ipAddress, port);
-            queueOutgoing.Enqueue(new KeyValuePair<IPEndPoint, byte[]>(endpoint, message));
+            queueOutgoing.Enqueue(new System.Collections.Generic.KeyValuePair<IPEndPoint, byte[]>(endpoint, message));
         }
         protected void Write(string message)
         {
             byte[] bytes = ASCIIEncoding.ASCII.GetBytes(message);
-            queueOutgoing.Enqueue(new KeyValuePair<IPEndPoint, byte[]>(null, bytes));
+            queueOutgoing.Enqueue(new System.Collections.Generic.KeyValuePair<IPEndPoint, byte[]>(null, bytes));
         }
         protected void Write(string message, IPEndPoint target)
         {
             byte[] bytes = ASCIIEncoding.ASCII.GetBytes(message);
-            queueOutgoing.Enqueue(new KeyValuePair<IPEndPoint, byte[]>(target, bytes));
+            queueOutgoing.Enqueue(new System.Collections.Generic.KeyValuePair<IPEndPoint, byte[]>(target, bytes));
         }
         protected void Write(string message, IPAddress ipAddress, int port)
         {
             byte[] bytes = ASCIIEncoding.ASCII.GetBytes(message);
             IPEndPoint endpoint = new IPEndPoint(ipAddress, port);
-            queueOutgoing.Enqueue(new KeyValuePair<IPEndPoint, byte[]>(endpoint, bytes));
+            queueOutgoing.Enqueue(new System.Collections.Generic.KeyValuePair<IPEndPoint, byte[]>(endpoint, bytes));
         }
         #endregion
 
@@ -311,7 +309,7 @@ namespace Generic.Network
             {
                 if (queueOutgoing.Count > 0)
                 {
-                    KeyValuePair<IPEndPoint, byte[]> message = queueOutgoing.Dequeue();
+                    System.Collections.Generic.KeyValuePair<IPEndPoint, byte[]> message = queueOutgoing.Dequeue();
                     if (tcpClients.Count > 0)
                         try
                         {

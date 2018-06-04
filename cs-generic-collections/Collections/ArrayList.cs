@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Threading;
+﻿using System.Threading;
 
 namespace Generic.Collections
 {
@@ -13,7 +11,7 @@ namespace Generic.Collections
         {
             array = new System.Collections.ArrayList();
         }
-        public ArrayList(ICollection c)
+        public ArrayList(System.Collections.ICollection c)
         {
             array = new System.Collections.ArrayList(c);
         }
@@ -135,7 +133,7 @@ namespace Generic.Collections
                 mutex.ReleaseMutex();
             }
         }
-        public IEnumerator GetEnumerator()
+        public System.Collections.IEnumerator GetEnumerator()
         {
             mutex.WaitOne();
             try
@@ -159,7 +157,7 @@ namespace Generic.Collections
                 mutex.ReleaseMutex();
             }
         }*/
-        public IEnumerator GetEnumerator(int index, int count)
+        public System.Collections.IEnumerator GetEnumerator(int index, int count)
         {
             mutex.WaitOne();
             try

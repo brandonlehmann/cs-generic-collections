@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Threading;
-using System.Text;
 
 namespace Generic.Collections
 {
